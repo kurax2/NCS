@@ -53,14 +53,8 @@ abstract public class Account {
 	}
 
 	public void setBalance(int initialBalance) {
-		if(initialBalance < 2500)
-		{
-			System.out.println("Inital Deposit cannot be less than $2500");
-		}
-		else
-		{
-			balance = initialBalance;
-		}
+		
+		balance = initialBalance;
 		
 	}
 	
@@ -70,7 +64,48 @@ abstract public class Account {
 	}
 	
 	/* method perform fund transfer operation and return the transfered amount*/
-	public abstract int fundTransfer(int amount); 
+	public abstract int fundTransfer(int amount);
+
+	@Override
+	public String toString() {
+		return "Account [accountNumber=" + accountNumber + "]";
+	}
+
+	
+
+	@Override           // obj -> Car
+	public boolean equals(Object obj) {
+			
+
+		if(obj instanceof SavingAccount )
+		{
+				Account secondObj = (Account) obj;
+				boolean a = (this.accountNumber == secondObj.accountNumber);
+				boolean b = (this.balance == secondObj.balance);
+				boolean c = (this.name.equals(secondObj.name));
+				boolean d = (this.accountType.equals(secondObj.accountType));
+				
+				return a&&b&&c&&d;
+				
+		}
+		else if(obj instanceof CurrentAccount)
+		{
+			Account secondObj = (Account) obj;
+			boolean a = (this.accountNumber == secondObj.accountNumber);
+			boolean b = (this.balance == secondObj.balance);
+			boolean c = (this.name.equals(secondObj.name));
+			boolean d = (this.accountType.equals(secondObj.accountType));
+			
+			return a&&b&&c&&d;
+		}
+		else
+		{
+			return false;
+		}
+		
+				
+	} 
+	
 	
 	
 	

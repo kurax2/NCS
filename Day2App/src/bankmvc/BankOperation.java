@@ -10,7 +10,6 @@ public class BankOperation {
 	public Account createAccount(Account a)
 	{
 		
-		
 		if(a.getAccountNumber() != 0)
 		{
 			// save account Database
@@ -21,7 +20,7 @@ public class BankOperation {
 		{
 			return null;
 		}
-	
+		
 	}
 	
 	public String doDeposit(int searchAccountNumber,int amount)
@@ -74,7 +73,9 @@ public class BankOperation {
 	{
 		boolean isTransferDone = false;
 		
-		for (Account account : arr) {
+		for(int i = 0;i<count;i++)
+		{
+			Account account = arr[i];
 			if(account.getAccountNumber() == searchAccountNumber)
 			{
 				int transferedAmount =  account.fundTransfer(amount);
@@ -89,7 +90,10 @@ public class BankOperation {
 		boolean isCredited = false;
 		if(isTransferDone == true)
 		{
-			for (Account account : arr) {
+			for(int i = 0;i<count;i++)
+			{
+				Account account = arr[i];
+
 				if(account.getAccountNumber() == payeeAccountNumber)
 				{
 					account.setBalance(account.getBalance()+amount);

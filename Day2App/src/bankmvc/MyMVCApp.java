@@ -140,6 +140,7 @@ public class MyMVCApp {
 	  // ---------------- client layer ----------------------
 	public void userCreateAccountForm()
 	{
+		/*
 		System.out.println("Enter the Account Holder Name ");
 		String name = stringScanner.nextLine();
 		
@@ -179,6 +180,29 @@ public class MyMVCApp {
 		{
 			System.out.println("Account Created "+savedObject.showAccountDetails());
 		}
+		*/
+		
+		Account a1 = new SavingAccount();
+		a1.setAccountNumber(101);
+		a1.setName("A");
+		a1.setBalance(10000);
+		a1.setAccountType("Saving Acount");
+		
+		Account a2 = new CurrentAccount();
+		a2.setAccountNumber(102);
+		a2.setName("B");
+		a2.setBalance(2800);
+		a2.setAccountType("Current Acount");
+		
+		Account a3 = new SavingAccount();
+		a3.setAccountNumber(103);
+		a3.setName("C");
+		a3.setBalance(3000);
+		a3.setAccountType("Saving Acount");
+		
+		bankOps.createAccount(a1);
+		bankOps.createAccount(a2);
+		bankOps.createAccount(a3);
 		
 		
 	}

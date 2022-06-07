@@ -15,8 +15,9 @@ class B extends A  // class B is 3rd party
 		System.out.println("B Constrcutor");
 	}
 }
+class E{}
 
-class C extends B   
+class C extends B 
 {
 	C(int myValue)
 	{
