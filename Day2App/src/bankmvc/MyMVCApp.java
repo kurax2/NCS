@@ -26,6 +26,10 @@ public class MyMVCApp {
 			System.out.println("7. Widrwal Amount");
 			System.out.println("8. Account Details");
 			System.out.println("9. Account Based on Balance Range");
+			System.out.println("10. Transfer Fund");
+			System.out.println("11. Specifc Method Call");
+			
+			
 			
 			System.out.println("0. Exit");
 			
@@ -48,7 +52,13 @@ public class MyMVCApp {
 					break;
 				case 4:
 					app.displayAllAccounts();
-
+					break;
+				case 10:
+					app.fundTransferUseCase();
+					break;
+				case 11:
+					app.specficMethodCall();
+					break;
 			default:
 				break;
 			}
@@ -56,7 +66,35 @@ public class MyMVCApp {
 		}
 		
 	}
+	public void specficMethodCall()
+	{
+		bankOps.callSpecificMethod();
+	}
 	
+	
+	public void fundTransferUseCase()
+	{
+		System.out.println("Enter the Source Account Number  ");
+		int accNumber = sc.nextInt();
+		
+		System.out.println("Enter the Amount to be Transfered  ");
+		int amount = sc.nextInt();
+		
+		System.out.println("Enter the Payee Account Number  ");
+		int payeeAccNumber = sc.nextInt();
+		
+		boolean status = bankOps.doTransferFunds(amount, accNumber, payeeAccNumber);
+			
+		if(status)
+		{
+			System.out.println("Fund Transfered Successfuly ");
+		}
+		else
+		{
+			System.out.println(" Error Contact to Customer Care ");
+		}
+		
+	}
 	
 	public void displayAllAccounts()
 	{
@@ -99,6 +137,7 @@ public class MyMVCApp {
 		System.out.println(response);
 	}
 	
+	  // ---------------- client layer ----------------------
 	public void userCreateAccountForm()
 	{
 		System.out.println("Enter the Account Holder Name ");
@@ -110,7 +149,23 @@ public class MyMVCApp {
 		System.out.println("Enter the Account Initial Balance ");
 		int balance = sc.nextInt();
 		
-		Account a = new Account();// client layer
+		System.out.println("Choose Account Type");
+		System.out.println(" 1> Current Account");
+		System.out.println("2> Saving Account");
+		
+		int accType = sc.nextInt();
+		Account a = null;
+		if(accType == 1)
+		{
+			a = new CurrentAccount();// client layer
+			a.setAccountType("Current Account");
+		}
+		else if(accType == 2)
+		{
+			a = new SavingAccount();
+			a.setAccountType("Saving Account");
+		}
+		
 		a.setAccountNumber(accNumber);
 		a.setBalance(balance);
 		a.setName(name);
@@ -122,7 +177,7 @@ public class MyMVCApp {
 		}
 		else
 		{
-			System.out.println("Account Created ");
+			System.out.println("Account Created "+savedObject.showAccountDetails());
 		}
 		
 		

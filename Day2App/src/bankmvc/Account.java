@@ -1,11 +1,12 @@
 package bankmvc;
 
 /*bean class , which reusable component */
-public class Account {
+abstract public class Account {
 
 	private int accountNumber;
 	private String name ; // account holder name
 	private int balance;
+	private String accountType;
 	
 	/* not the part of Java bean class standard*/
 	public Account(String name) {
@@ -42,6 +43,15 @@ public class Account {
 	public int getBalance() {
 		return balance;
 	}
+	
+	public String getAccountType() {
+		return accountType;
+	}
+
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
+	}
+
 	public void setBalance(int initialBalance) {
 		if(initialBalance < 2500)
 		{
@@ -56,7 +66,12 @@ public class Account {
 	
 	public String showAccountDetails()
 	{
-		return "Account -"+accountNumber+" , "+name+" , $"+balance+"";
+		return "Account -"+accountNumber+" , "+name+" , $"+balance+" Account Type "+accountType;
 	}
+	
+	/* method perform fund transfer operation and return the transfered amount*/
+	public abstract int fundTransfer(int amount); 
+	
+	
 	
 }//end of laptop class

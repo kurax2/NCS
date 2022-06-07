@@ -68,5 +68,71 @@ public class BankOperation {
 		}
 		return 0;
 	}
+	
+	
+	public boolean doTransferFunds(int amount,int searchAccountNumber,int payeeAccountNumber)
+	{
+		boolean isTransferDone = false;
+		
+		for (Account account : arr) {
+			if(account.getAccountNumber() == searchAccountNumber)
+			{
+				int transferedAmount =  account.fundTransfer(amount);
+				if(transferedAmount != 0)
+				{
+					isTransferDone = true;
+					break;
+				}
+			}
+		}
+		
+		boolean isCredited = false;
+		if(isTransferDone == true)
+		{
+			for (Account account : arr) {
+				if(account.getAccountNumber() == payeeAccountNumber)
+				{
+					account.setBalance(account.getBalance()+amount);
+					isCredited = true;
+					break;
+				}
+			}
+		}
+		
+		return isTransferDone && isCredited;
+	}
+	
+	
+	public void callSpecificMethod()
+	{
+		for (Account account : arr) {
+			
+			if(account instanceof CurrentAccount)
+			{
+				CurrentAccount acc = (CurrentAccount)account;
+				acc.giveBusinessLoan();
+			}
+			if(account instanceof SavingAccount)
+			{
+				SavingAccount acc = (SavingAccount)account;
+				acc.provideCashBack();
+			}
+			
+			
+		}
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
