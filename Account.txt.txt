@@ -9,5 +9,9 @@ class Account{
 		branchName = name;
 	}
 
+	public int getAccountNumber()
+	{
+		return accountNumber;
+	}
 
 }
