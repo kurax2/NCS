@@ -14,4 +14,10 @@ class Account{
 		return accountNumber;
 	}
 
+	public String getAccountName()
+	{
+		return accountHolderName;
+	}
+
+
 }
