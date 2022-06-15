@@ -9,8 +9,5 @@ class Account{
 		branchName = name;
 	}
 
-	public int getBalance()
-	{
-		return balance;
-	}
+
 }
