@@ -50,6 +50,12 @@ public class EmployeeServiceImpl implements EmployeeService{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public boolean deleteEmp(int empId) {
+		
+		return empDAO.deleteEmp(empId);
+	}
 	
 	
 

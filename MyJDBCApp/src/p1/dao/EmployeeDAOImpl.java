@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -103,6 +104,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 				
 				//output = new Employee(empId, name, projectId, email, bankAccount, address, designation, salary);
 				list.add(new Employee(empId, name, projectId, email, bankAccount, address, designation, salary));
+			
 				
 				
 			}
@@ -117,6 +119,47 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public Employee doLinkProjectWithEmployee(int empId, int projetId)throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean deleteEmp(int empId) {
+		
+		boolean isDeleted = false;
+		
+		
+		String deleteEmployeeQuery = "delete from  ncsemployee where empId = ?";
+		
+		try {
+			
+			con.setAutoCommit(false);
+			
+			// delete project table
+			PreparedStatement  psDelete = con.prepareStatement(deleteEmployeeQuery);
+			psDelete.setInt(1, empId);
+			
+			int deleteRowsEffected = psDelete.executeUpdate();
+			System.err.println("INFO : "+LocalTime.now()+" rows effected after update :- "+deleteRowsEffected);
+			
+			
+			
+			if(deleteRowsEffected !=0)
+			{
+				con.commit();
+				System.err.println("INFO : "+LocalTime.now()+" Data based Commited !!!");
+				isDeleted = true;
+			}
+			
+		} catch (Exception e) {
+			try {
+				System.err.println("Inside catch Block :- "+e);
+				con.rollback();
+			} catch (SQLException e1) {
+				System.out.println("Exception during roll back "+e);
+			}
+		}
+
+		
+		return isDeleted;
 	}
 
 	

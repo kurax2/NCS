@@ -10,4 +10,5 @@ public interface EmployeeDAO {
 	public Employee getEmployeeByID(int id)throws SQLException;
 	public List<Employee> getAllEmploye()throws SQLException;
 	public Employee doLinkProjectWithEmployee(int empId,int projetId)throws SQLException;
+	public boolean deleteEmp(int empId);
 }

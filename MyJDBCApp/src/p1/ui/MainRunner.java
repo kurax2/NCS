@@ -31,12 +31,15 @@ public class MainRunner {
 		while(true)
 		{
 			System.out.println("\n=======================================================");
+			System.out.println("0. EXIT");
 			System.out.println("1. Insert Employee ");
 			System.out.println("2. Add Project");
 			System.out.println("3. Add Project to Employee");
 			System.out.println("4. View All Employee");
 			System.out.println("5. View Employee By ID ");
-			System.out.println("0. EXIT");
+			System.out.println("6. Delete Employee By ID ");
+			System.out.println("8. Employee Details from Projects"); 
+			
 			
 			System.out.println("\n Enter Ur Option :- ");
 			int userOption = new Scanner(System.in).nextInt();
@@ -44,27 +47,71 @@ public class MainRunner {
 			switch(userOption)
 			{
 				
-				case 4: app.viewAllEmployee();
+				case 0:	System.exit(0);
 						break;
-				case 3: break;
+				case 1:	app.saveEmployee();
+						break;
 				case 2:	app.addProject();
 						break;
-				case 1:
-						app.saveEmployee();
+				case 3: break;
+				
+				
+				case 4: app.viewAllEmployee();
+						break;	
+				case 5:	app.viewEmployeeetails();
 						break;
-				case 0:
-					System.exit(0);
-					break;
-					
-				case 5:
-					app.viewEmployeeetails();
-					break;
+						
+				// deleteEmployee
+				case 6: app.deleteEmp();
+						break;
+						
+				// project Id , project Name , Employee Id, employee email
+				case 8: try {
+					app.getEmployeeDetailsFromProject();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+						break;
+                // Project Id , total Salary , 
+				
+				// insert employees in batch 	
+
+				// convert all DML queries in transactions
 			}
 			
 		}//end of while
 	}//end of main
 	
 	
+	private void getEmployeeDetailsFromProject() throws SQLException {
+		System.out.println("Project Number: ");
+		int one = new Scanner(System.in).nextInt();
+		
+		Project p=projectService.getProjectById(one);
+		for(Employee e:empService.getAllEmploye()) {
+			
+			if(p.getProjectNumber()==e.getProjectInfo()) {
+				System.out.println(e);
+			}
+			
+		}
+		
+		
+		
+	}
+
+
+
+	private void deleteEmp() {
+		System.out.println("Enter Employee Number to be Deleted :- ");
+		int empNumber = Integer.parseInt(sc.nextLine());
+		
+		boolean status=empService.deleteEmp(empNumber);
+		System.out.println("Employee "+empNumber+" changed: "+status);
+		
+	}
+
 	private void viewAllEmployee() {
 		try {
 			List<Employee> list=empService.getAllEmploye();

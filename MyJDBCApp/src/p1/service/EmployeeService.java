@@ -13,5 +13,6 @@ public interface EmployeeService {
 	public Employee doLinkProjectWithEmployee(int empId,int projetId)throws SQLException;
 	
 	public boolean validateSalary(int salary,String designation);
+	public boolean deleteEmp(int empId);
 	
 }
