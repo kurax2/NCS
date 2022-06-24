@@ -69,8 +69,8 @@ public class ViewAllEmployeeServlet extends HttpServlet {
 			browser.print("<td>"+employee.getAddress()+"</td>");
 			browser.print("<td>"+employee.getSalary()+"</td>");
 			
-			browser.print("<td> <a href='#'> edit </a> </td>");
-			browser.print("<td> <a href='#'> delet </a></td>");
+			browser.print("<td> <a href='EditServlet'> edit </a> </td>");
+			browser.print("<td> <a href='DeleteServlet?empid="+employee.getEmpId()+"'> delete </a></td>");
 			
 					
 			browser.print("<tr>");
