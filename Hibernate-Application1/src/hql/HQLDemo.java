@@ -14,10 +14,25 @@ public class HQLDemo {
 		
 		
 		//getAll(hibernate);
-		whereClause(hibernate);
+		//whereClause(hibernate);
+		hqlOnEmbeddedValues(hibernate);
 		
 		
 	}
+	
+	public static void hqlOnEmbeddedValues(Session hibernate)
+	{
+
+		String query = "select e.permanentAddress.cityName from Employee as e where e.salary > :xyz"; // select * from NCSEmployee
+		Query q = hibernate.createQuery(query);
+		q.setInteger("xyz", 5000);
+		String cityName =  (String)q.list().get(0);
+		
+		System.out.println("--->> city Name "+cityName);
+	}
+	
+	
+	
 	
 	public static void whereClause(Session hibernate)
 	{
