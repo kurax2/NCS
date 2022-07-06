@@ -22,7 +22,7 @@ public class Employee implements Comparable<Employee>,Serializable{
 	}
 	public Employee(int empId, String name, int projectInfo, String email, int bankAccount, String address,
 			String designation, int salary) {
-		super();
+		
 		this.empId = empId;
 		this.name = name;
 		this.projectInfo = projectInfo;

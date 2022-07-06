@@ -47,7 +47,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@Override
 	public Employee updateProject(int searchEmpId, int projectId) {
 		
-		return EmployeeDB.updateProjectInfo(searchEmpId, projectId);
+		return employeeDb.updateProjectInfo(searchEmpId, projectId);
 	}
 
 	
