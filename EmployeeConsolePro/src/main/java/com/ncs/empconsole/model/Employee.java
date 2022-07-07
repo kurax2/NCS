@@ -2,11 +2,18 @@ package com.ncs.empconsole.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import org.springframework.stereotype.Component;
 
-@Component
+@Entity
 public class Employee implements Comparable<Employee>,Serializable{
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int empId;
 	private String name;
 	private int projectInfo;
@@ -20,10 +27,10 @@ public class Employee implements Comparable<Employee>,Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Employee(int empId, String name, int projectInfo, String email, int bankAccount, String address,
+	public Employee(String name, int projectInfo, String email, int bankAccount, String address,
 			String designation, int salary) {
 		
-		this.empId = empId;
+		
 		this.name = name;
 		this.projectInfo = projectInfo;
 		this.email = email;
@@ -32,9 +39,8 @@ public class Employee implements Comparable<Employee>,Serializable{
 		this.designation = designation;
 		this.salary = salary;
 	}
-	public Employee(int empId, String name, int salary) {
+	public Employee(String name, int salary) {
 		super();
-		this.empId = empId;
 		this.name = name;
 		this.salary = salary;
 	}
