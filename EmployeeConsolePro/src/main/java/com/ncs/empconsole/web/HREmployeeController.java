@@ -4,9 +4,13 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +32,7 @@ import com.ncs.empconsole.util.HREmployeeDTOConverstion;
 
 @RestController
 @RequestMapping("/empconsole/hr")
+@Validated
 public class HREmployeeController {
 	
 	@Autowired
@@ -82,7 +87,7 @@ public class HREmployeeController {
 	}
 	
 	@PostMapping("/employee")
-	public ResponseEntity<Employee> addEmployee(@RequestBody Employee e)throws OutofRangeSalaryException
+	public ResponseEntity<Employee> addEmployee(@RequestBody @Valid Employee e)throws OutofRangeSalaryException
 	{
 		
 		Employee savedEmployee = empService.addEmployee(e);
