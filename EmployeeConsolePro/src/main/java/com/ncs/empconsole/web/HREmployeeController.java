@@ -138,13 +138,21 @@ public class HREmployeeController {
 	}
 	
 	@GetMapping("/project/{pid}")
-	public Project getProjetById(@PathVariable int pid)
+	public ResponseEntity<Project> getProjetById(@PathVariable int pid)throws Exception
 	{
-		return projectService.getProject(pid);
+		Project p =  projectService.getProject(pid);
+		if(p != null)
+		{
+			return new ResponseEntity<Project>(p,HttpStatus.OK);
+		}
+		else
+		{
+			throw new Exception("Invalid Project ID");
+		}
 	}
 	
 	@PutMapping("/project/{pid}")
-	public Set<Employee> allocateEmployeeToProject(@PathVariable int pid, @RequestParam int empId)
+	public ResponseEntity<Set<Employee>> allocateEmployeeToProject(@PathVariable int pid, @RequestParam int empId)throws Exception
 	{
 		 Set<Employee> workingEmployee = null;
 		 
@@ -157,15 +165,28 @@ public class HREmployeeController {
 		 if(e != null & p != null)
 		 {
 			 workingEmployee = projectService.allocateProject(p, e);
+			 return new ResponseEntity<Set<Employee>>(workingEmployee,HttpStatus.OK);
+		 }
+		 else 
+		 {
+			 throw new Exception("Invalid Project ID or no Employee Allocated");
 		 }
 		 
-		 return workingEmployee;
 	}
 	
 	@GetMapping("/project/{pid}/employees")
-	public Set<Employee> getAllWorkingEmployees(@PathVariable int pid)
+	public ResponseEntity<Set<Employee>> getAllWorkingEmployees(@PathVariable int pid)throws Exception
 	{
-		return projectService.getProjectResource(pid);
+		Set<Employee> workingEmployees =  projectService.getProjectResource(pid);
+		
+		if(workingEmployees!=null || workingEmployees.size()>0)
+		{
+			 return new ResponseEntity<Set<Employee>>(workingEmployees,HttpStatus.OK);
+		}
+		 else 
+		 {
+			 throw new Exception("Invalid Project ID or no Employee Allocated");
+		 }
 	}
 	
 }//end class

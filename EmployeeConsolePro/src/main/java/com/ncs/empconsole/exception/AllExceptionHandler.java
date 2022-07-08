@@ -63,6 +63,20 @@ public class AllExceptionHandler
 		return new ResponseEntity<ExceptionTemplate>(template,HttpStatus.BAD_REQUEST);
 	}
 	
+	@ExceptionHandler
+	public ResponseEntity<ExceptionTemplate> handleExceptions(Exception e)
+	{
+		System.out.println("--->> Inside Exeption Handler : Out of Salary Range ");
+		ExceptionTemplate template = new ExceptionTemplate();
+		template.setMsg(e.getMessage());
+		template.setUserInput(e.toString());
+		template.setDateTime(LocalDateTime.now());
+		
+		return new ResponseEntity<ExceptionTemplate>(template,HttpStatus.BAD_REQUEST);
+	}
+	
+	
+	
 	
 
 }

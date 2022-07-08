@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-@JsonIgnoreProperties("hibernateLazyInitializer")
 @Entity
 public class Employee implements Comparable<Employee>,Serializable{
 	
@@ -33,10 +32,6 @@ public class Employee implements Comparable<Employee>,Serializable{
 	@JoinColumn(name="department")
 	private Department department;
 	
-	@ManyToOne
-	@JoinColumn(name="projectInfo")
-	@JsonManagedReference
-	private Project project;
 	
 	public Employee() {
 		super();
@@ -107,21 +102,7 @@ public class Employee implements Comparable<Employee>,Serializable{
 		this.department = department;
 	}
 
-	public Project getProject() {
-		return project;
-	}
-
-	public void setProject(Project project) {
-		this.project = project;
-	}
-
-	@Override
-	public String toString() {
-		return "Employee [empId=" + empId + ", name=" + name + ", email=" + email + ", bankAccount=" + bankAccount
-				+ ", address=" + address + ", designation=" + designation + ", salary=" + salary + ", department="
-				+ department + ", project=" + project + "]";
-	}
-
+	
 	@Override
 	public int compareTo(Employee o) {
 		
