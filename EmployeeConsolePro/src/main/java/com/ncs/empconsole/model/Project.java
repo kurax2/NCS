@@ -3,6 +3,7 @@ package com.ncs.empconsole.model;
 import java.io.Serializable;
 
 public class Project implements Serializable,Comparable<Project> {
+	
 	private int projectNumber;
 	private String projectName;
 	private int cost;

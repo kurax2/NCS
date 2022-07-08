@@ -2,10 +2,13 @@ package com.ncs.empconsole.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -24,6 +27,9 @@ public class Employee implements Comparable<Employee>,Serializable{
 	private String designation;
 	private int salary;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Department department;
+	
 	public Employee() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -39,6 +45,15 @@ public class Employee implements Comparable<Employee>,Serializable{
 		this.address = address;
 		this.designation = designation;
 		this.salary = salary;
+	}
+	
+	
+	
+	public Department getDepartment() {
+		return department;
+	}
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 	public Employee(String name, int salary) {
 		super();
